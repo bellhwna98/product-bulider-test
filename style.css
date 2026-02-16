@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/* Dark mode (default) */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
@@ -12,6 +13,13 @@ body {
   justify-content: center;
   align-items: center;
   color: #fff;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Light mode */
+body.light {
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec, #bcccdc);
+  color: #222;
 }
 
 .container {
@@ -19,6 +27,7 @@ body {
   padding: 40px 20px;
   max-width: 600px;
   width: 100%;
+  position: relative;
 }
 
 h1 {
@@ -30,6 +39,39 @@ h1 {
   font-size: 1.1rem;
   color: #aaa;
   margin-bottom: 30px;
+  transition: color 0.4s;
+}
+
+body.light .subtitle {
+  color: #555;
+}
+
+/* Theme toggle button */
+#themeToggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#themeToggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+body.light #themeToggle {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.light #themeToggle:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #generateBtn {
@@ -67,6 +109,11 @@ h1 {
   gap: 10px;
   animation: fadeIn 0.4s ease forwards;
   opacity: 0;
+  transition: background 0.4s;
+}
+
+body.light .set {
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .set-label {
@@ -74,6 +121,11 @@ h1 {
   font-size: 0.9rem;
   color: #aaa;
   min-width: 30px;
+  transition: color 0.4s;
+}
+
+body.light .set-label {
+  color: #666;
 }
 
 .balls {
