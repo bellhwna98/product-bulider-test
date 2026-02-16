@@ -170,6 +170,33 @@ body.light .contact-link {
   color: #666;
 }
 
+.disqus-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+body.light .disqus-section {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.disqus-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#disqus_thread {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+body.light #disqus_thread {
+  background: rgba(0, 0, 0, 0.03);
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
