@@ -153,6 +153,23 @@ body.light .set-label {
 .ball.range-4 { background: #8c8c8c; }
 .ball.range-5 { background: #44bd32; }
 
+.contact-link {
+  display: inline-block;
+  margin-top: 28px;
+  color: #aaa;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.contact-link:hover {
+  color: #e94560;
+}
+
+body.light .contact-link {
+  color: #666;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
