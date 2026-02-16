@@ -117,16 +117,24 @@ function renderRecentDraws() {
   const tableBody = document.getElementById('recentDrawsBody');
   if (!tableBody) return;
 
-  // Sample recent draw data
+  // Real draw data from dhlottery.co.kr (verified)
   const draws = [
-    { round: 1155, date: '2025-02-08', numbers: [3, 11, 18, 27, 34, 42], bonus: 7 },
-    { round: 1154, date: '2025-02-01', numbers: [5, 14, 19, 23, 38, 45], bonus: 31 },
-    { round: 1153, date: '2025-01-25', numbers: [2, 8, 16, 29, 33, 40], bonus: 12 },
-    { round: 1152, date: '2025-01-18', numbers: [1, 10, 22, 30, 37, 44], bonus: 25 },
-    { round: 1151, date: '2025-01-11', numbers: [6, 13, 21, 28, 35, 41], bonus: 9 },
-    { round: 1150, date: '2025-01-04', numbers: [4, 15, 20, 26, 32, 43], bonus: 17 },
-    { round: 1149, date: '2024-12-28', numbers: [7, 12, 24, 31, 36, 39], bonus: 2 },
-    { round: 1148, date: '2024-12-21', numbers: [9, 17, 25, 33, 38, 45], bonus: 14 },
+    { round: 1211, date: '2026-02-14', numbers: [23, 26, 27, 35, 38, 40], bonus: 10,
+      prize1: '2,370,956,036', winners1: 14, prize2: '64,328,265', winners2: 86 },
+    { round: 1210, date: '2026-02-07', numbers: [1, 7, 9, 17, 27, 38], bonus: 31,
+      prize1: '1,102,298,407', winners1: 24, prize2: '28,818,259', winners2: 153 },
+    { round: 1209, date: '2026-01-31', numbers: [2, 17, 20, 35, 37, 39], bonus: 24,
+      prize1: '1,371,910,466', winners1: 22, prize2: '68,908,745', winners2: 73 },
+    { round: 1208, date: '2026-01-24', numbers: [6, 27, 30, 36, 38, 42], bonus: 25,
+      prize1: '5,001,713,625', winners1: 6, prize2: '73,554,613', winners2: 68 },
+    { round: 1207, date: '2026-01-17', numbers: [10, 22, 24, 27, 38, 45], bonus: 11,
+      prize1: '1,733,202,949', winners1: 17, prize2: '57,101,648', winners2: 86 },
+    { round: 1206, date: '2026-01-10', numbers: [1, 3, 17, 26, 27, 42], bonus: 23,
+      prize1: '1,868,807,000', winners1: 15, prize2: '63,135,372', winners2: 74 },
+    { round: 1205, date: '2026-01-03', numbers: [1, 4, 16, 23, 31, 41], bonus: 2,
+      prize1: '3,226,386,263', winners1: 10, prize2: '55,436,191', winners2: 97 },
+    { round: 1204, date: '2025-12-27', numbers: [8, 16, 28, 30, 31, 44], bonus: 27,
+      prize1: '1,661,000,000', winners1: 18, prize2: '52,450,000', winners2: 95 },
   ];
 
   let html = '';
@@ -136,14 +144,30 @@ function renderRecentDraws() {
     ).join(' ');
     const bonusHtml = `<span class="ball ${getBallClass(d.bonus)}" style="width:30px;height:30px;font-size:0.75rem;display:inline-flex;opacity:0.7">${d.bonus}</span>`;
 
-    html += `<tr>
-      <td>${d.round}</td>
+    html += `<tr class="draw-row" onclick="togglePrizeDetail(this)" style="cursor:pointer">
+      <td>${d.round}회</td>
       <td>${d.date}</td>
       <td>${ballsHtml}</td>
       <td>${bonusHtml}</td>
+    </tr>
+    <tr class="prize-detail" style="display:none">
+      <td colspan="4">
+        <div class="prize-info">
+          <span class="prize-badge p1">1등</span> ${d.winners1}명 &mdash; 각 <strong>${d.prize1}원</strong>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <span class="prize-badge p2">2등</span> ${d.winners2}명 &mdash; 각 <strong>${d.prize2}원</strong>
+        </div>
+      </td>
     </tr>`;
   });
   tableBody.innerHTML = html;
+}
+
+function togglePrizeDetail(row) {
+  const detail = row.nextElementSibling;
+  if (detail && detail.classList.contains('prize-detail')) {
+    detail.style.display = detail.style.display === 'none' ? 'table-row' : 'none';
+  }
 }
 
 /* ===== Init ===== */
